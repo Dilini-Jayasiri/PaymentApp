@@ -1,4 +1,5 @@
-<form #form="ngForm" (submit)="onSubmit(form)">
+<form #form="ngForm" (submit)="onSubmit(form)"
+[class.submitted] = "service.formSubmitted" novalidate autocomplete="off">
     <input type="hidden" name="paymentDetailId" [value]="service.formData.paymentId">
     <div class="mb-3">
         <label>
@@ -7,7 +8,8 @@
         <input class="form-control form-control-lg" 
         placeholder="Name on Card" 
         #cardOwnerName="ngModel" 
-        name="cardOwnerName" 
+        name="cardOwnerName"
+        required
         [(ngModel)]="service.formData.cardOwnerName">
     </div>
     <div class="mb-3">
@@ -18,7 +20,8 @@
         placeholder="16 Digit Card Number" 
         #cardNumber="ngModel" 
         name="cardNumber"   
-        [(ngModel)]="service.formData.cardNumber">
+        [(ngModel)]="service.formData.cardNumber"
+        required minlength="16" maxlength="16">
     </div>
     <div class="row">
         <div class="mb-3  col-6">
@@ -29,7 +32,9 @@
             placeholder="CVV"  type="password"
             #securityCode="ngModel" 
             name="securityCode" 
-            [(ngModel)]="service.formData.securityCode">
+            
+            [(ngModel)]="service.formData.securityCode"
+            required minlength="3" maxlength="3">
         </div>
         <div class="mb-3 col-6">
             <label>
@@ -39,7 +44,8 @@
             placeholder="MM/YY" 
             #expirationDate="ngModel" 
             name="expirationDate" 
-            [(ngModel)]="service.formData.expirationDate">
+            [(ngModel)]="service.formData.expirationDate"
+            required minlength="5" maxlength="5">>
         </div>
     </div>
     <div class="d-grid">
